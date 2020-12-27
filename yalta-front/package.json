@@ -2,9 +2,6 @@
   "name": "yalta-front",
   "version": "0.0.1",
   "author": "FreeCaribou",
-  "engines": {
-    "node": "12.x"
-  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",

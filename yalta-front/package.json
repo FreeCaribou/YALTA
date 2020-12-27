@@ -2,7 +2,6 @@
   "name": "yalta-front",
   "version": "0.0.1",
   "author": "FreeCaribou",
-  "homepage": "https://todo.com/",
   "engines": {
     "node": "12.x"
   },

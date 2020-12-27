@@ -3,16 +3,17 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [HeaderComponent],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
   ],
-  exports: [IonicModule, CommonModule, ReactiveFormsModule, FormsModule, TranslateModule]
+  exports: [IonicModule, CommonModule, ReactiveFormsModule, FormsModule, TranslateModule, HeaderComponent]
 })
 export class SharedModule { }

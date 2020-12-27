@@ -6,7 +6,8 @@
     "Home": "Home",
     "User": "User",
     "Detail": "Detail",
-    "Profil": "Profil"
+    "Profil": "Profil",
+    "About": "About"
   },
   "Independant": {
     "ChooseYour": "Choose your independant"
@@ -19,5 +20,11 @@
   },
   "Home": {
     "FindYourSoulMate": "Find your soul mate"
+  },
+  "About": {
+    "YaltaIdea": "Yet Another Love Treaty App is a dating web and app (date, history date, date with a person, you got it?) to match people with a big interest in History!",
+    "DevAuthor": "Author of the dev",
+    "Source": "Source",
+    "YaltaIdeaCome": "The original idea come from a superbe Twitter account, <a href='https://twitter.com/fakehistoryhunt/status/1342855489307242497'>Fake History Hunter</a>"
   }
 }

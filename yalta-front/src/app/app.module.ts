@@ -37,8 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
-  ],
+    }),],
   providers: [
     StatusBar,
     SplashScreen,

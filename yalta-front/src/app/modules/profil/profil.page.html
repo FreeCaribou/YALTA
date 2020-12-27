@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{'Menu.User' | translate}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>{{"User.SelectLanguage" | translate}}</ion-label>
+    <ion-select [value]="languageCommunication.selectedLanguage"
+      (ionChange)="languageCommunication.changeLanguage($event.detail.value)" interface="popover">
+      <ion-select-option value="en">English</ion-select-option>
+      <ion-select-option value="fr">Français</ion-select-option>
+      <ion-select-option value="nl">Nederlands</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-content>

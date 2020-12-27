@@ -1,0 +1,23 @@
+{
+  "General": {
+    "HelloWorld": "Hello World"
+  },
+  "Menu": {
+    "Home": "Home",
+    "User": "User",
+    "Detail": "Detail",
+    "Profil": "Profil"
+  },
+  "Independant": {
+    "ChooseYour": "Choose your independant"
+  },
+  "User": {
+    "Login": "Login",
+    "Password": "Password",
+    "Email": "E-mail",
+    "SelectLanguage": "Select a language"
+  },
+  "Home": {
+    "FindYourSoulMate": "Find your soul mate"
+  }
+}

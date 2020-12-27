@@ -1,0 +1,8 @@
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let item of profils" size-xs="12" size-sm="6" size-lg="4">
+      <app-profil-card [profil]="item">
+      </app-profil-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

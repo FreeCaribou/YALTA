@@ -83,3 +83,7 @@ ion-tab-button {
 .padding-not-stick-edges {
   padding: 0px 10px;
 }
+
+.loader {
+  --spinner-color: var(--ion-color-secondary)
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoaderCommunicationService } from 'src/app/shared/services/communication/loader.communication.service';
 import { UserCommunicationService } from 'src/app/shared/services/communication/user.communication.service';
 import { UserService } from 'src/app/shared/services/data/user/user.service';
 
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private userCommunication: UserCommunicationService
+    private userCommunication: UserCommunicationService,
+    private loaderCommunication: LoaderCommunicationService
   ) { }
 
   ngOnInit() {
@@ -28,10 +30,15 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
+    this.loaderCommunication.isLoading = true;
     this.userService.login(this.loginForm.value).subscribe((data: any) => {
       // TODO better form the data
       console.log('the login data', data);
       this.userCommunication.user = data;
+    }, error => {
+
+    }, () => {
+      this.loaderCommunication.isLoading = false;
     })
   }
 
@@ -41,6 +48,10 @@ export class LoginComponent implements OnInit {
       console.log('the sign up data', data);
       this.userCommunication.user = data;
       // TODO describe better profil now?
+    }, error => {
+
+    }, () => {
+      this.loaderCommunication.isLoading = false;
     })
   }
 

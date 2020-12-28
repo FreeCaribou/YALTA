@@ -5,9 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from './components/header/header.component';
 import { TemplateCenterColComponent } from './components/template-center-col/template-center-col.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
-  declarations: [HeaderComponent, TemplateCenterColComponent],
+  declarations: [
+    HeaderComponent,
+    TemplateCenterColComponent,
+  ],
   imports: [
     CommonModule,
     IonicModule,
@@ -15,6 +19,14 @@ import { TemplateCenterColComponent } from './components/template-center-col/tem
     ReactiveFormsModule,
     TranslateModule,
   ],
-  exports: [IonicModule, CommonModule, ReactiveFormsModule, FormsModule, TranslateModule, HeaderComponent, TemplateCenterColComponent]
+  exports: [
+    IonicModule,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    TranslateModule,
+    HeaderComponent,
+    TemplateCenterColComponent
+  ]
 })
 export class SharedModule { }

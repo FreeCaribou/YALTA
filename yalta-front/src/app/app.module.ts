@@ -18,6 +18,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { environment } from 'src/environments/environment';
 import { UserDataService } from './shared/services/data/user/user.data.service';
 import { UserMockDataService } from './shared/services/data/user/user.mock.service';
+import { LoaderComponent } from './shared/components/loader/loader.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -25,9 +26,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoaderComponent],
   entryComponents: [],
-  imports: [BrowserModule,
+  imports: [
+    BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
@@ -37,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),],
+    }),
+  ],
   providers: [
     StatusBar,
     SplashScreen,

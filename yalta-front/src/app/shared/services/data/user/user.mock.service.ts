@@ -11,4 +11,8 @@ export class UserMockDataService implements IUserService {
   login(user): Observable<any> {
     return of(mock_login)
   }
+
+  signUp(user): Observable<any> {
+    return of(mock_login);
+  }
 }

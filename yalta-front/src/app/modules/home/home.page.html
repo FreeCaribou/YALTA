@@ -1,7 +1,15 @@
 <app-header [title]="'General.HelloWorld' | translate"></app-header>
 
 <ion-content>
-  <h1 class="padding-not-stick-edges">" {{ quote }} "</h1>
-  <h2 class="padding-not-stick-edges">{{"Home.FindYourSoulMate" | translate}}</h2>
-  <app-list-profil></app-list-profil>
+  <div *ngIf="!userCommunication.user">
+    <p>Beautiful image here later</p>
+    <a [routerLink]="['/tabs', 'profil']">
+      <h1>{{'Home.MustConnected' | translate}}</h1>
+    </a>
+  </div>
+  <div *ngIf="userCommunication.user">
+    <h1 class="padding-not-stick-edges">" {{ quote }} "</h1>
+    <h2 class="padding-not-stick-edges">{{"Home.FindYourSoulMate" | translate}}</h2>
+    <app-list-profil></app-list-profil>
+  </div>
 </ion-content>

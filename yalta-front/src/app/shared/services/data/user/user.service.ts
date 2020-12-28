@@ -12,4 +12,8 @@ export class UserService implements IUserService {
   login(user): Observable<any> {
     return this.service.login(user);
   }
+
+  signUp(user): Observable<any> {
+    return this.service.signUp(user);
+  }
 }

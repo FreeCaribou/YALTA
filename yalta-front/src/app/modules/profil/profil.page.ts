@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LanguageCommunicationService } from 'src/app/shared/services/communication/language.communication.service';
+import { UserCommunicationService } from 'src/app/shared/services/communication/user.communication.service';
 
 @Component({
   selector: 'app-profil',
@@ -8,6 +9,12 @@ import { LanguageCommunicationService } from 'src/app/shared/services/communicat
 })
 export class ProfilPage {
 
-  constructor(private languageCommunication: LanguageCommunicationService) { }
+  constructor(
+    private languageCommunication: LanguageCommunicationService,
+    private userCommunication: UserCommunicationService
+  ) { }
 
+  disconnect() {
+    this.userCommunication.user = null;
+  }
 }

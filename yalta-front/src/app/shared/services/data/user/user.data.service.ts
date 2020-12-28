@@ -14,4 +14,8 @@ export class UserDataService implements IUserService {
   login(user): Observable<any> {
     return this.baseService.post(`${this.baseUrl}/login`, user)
   }
+
+  signUp(user): Observable<any> {
+    return this.baseService.post(`${this.baseUrl}/signUp`, user);
+  }
 }

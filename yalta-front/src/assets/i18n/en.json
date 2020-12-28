@@ -1,6 +1,7 @@
 {
   "General": {
-    "HelloWorld": "Hello World"
+    "HelloWorld": "Hello World",
+    "Submit": "Submit"
   },
   "Menu": {
     "Home": "Home",
@@ -16,10 +17,15 @@
     "Login": "Login",
     "Password": "Password",
     "Email": "E-mail",
-    "SelectLanguage": "Select a language"
+    "SelectLanguage": "Select a language",
+    "Disconnect": "Disconnect",
+    "NoAccountYet" : "Don't have an account yet",
+    "SignUp": "Sign up",
+    "Name": "Name"
   },
   "Home": {
-    "FindYourSoulMate": "Find your soul mate"
+    "FindYourSoulMate": "Find your soul mate",
+    "MustConnected": "You must be connected to see other member"
   },
   "About": {
     "YaltaIdea": "Yet Another Love Treaty App is a dating web and app (date, history date, date with a person, you got it?) to match people with a big interest in History!",

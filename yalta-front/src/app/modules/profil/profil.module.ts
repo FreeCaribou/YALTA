@@ -3,12 +3,13 @@ import { ProfilPage } from './profil.page';
 
 import { ProfilPageRoutingModule } from './profil-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   imports: [
     ProfilPageRoutingModule,
     SharedModule,
   ],
-  declarations: [ProfilPage]
+  declarations: [ProfilPage, LoginComponent]
 })
 export class ProfilPageModule { }

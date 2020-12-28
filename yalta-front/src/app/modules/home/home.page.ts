@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserCommunicationService } from 'src/app/shared/services/communication/user.communication.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomePage {
   ];
   quote: string;
 
-  constructor() { }
+  constructor(private userCommunication: UserCommunicationService) { }
 
   ionViewWillEnter() {
     this.quote = this.getRandomQuote();

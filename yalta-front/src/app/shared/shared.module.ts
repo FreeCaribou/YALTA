@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeaderComponent } from './components/header/header.component';
+import { TemplateCenterColComponent } from './components/template-center-col/template-center-col.component';
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent, TemplateCenterColComponent],
   imports: [
     CommonModule,
     IonicModule,
@@ -14,6 +15,6 @@ import { HeaderComponent } from './components/header/header.component';
     ReactiveFormsModule,
     TranslateModule,
   ],
-  exports: [IonicModule, CommonModule, ReactiveFormsModule, FormsModule, TranslateModule, HeaderComponent]
+  exports: [IonicModule, CommonModule, ReactiveFormsModule, FormsModule, TranslateModule, HeaderComponent, TemplateCenterColComponent]
 })
 export class SharedModule { }

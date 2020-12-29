@@ -19,6 +19,8 @@ import { environment } from 'src/environments/environment';
 import { UserDataService } from './shared/services/data/user/user.data.service';
 import { UserMockDataService } from './shared/services/data/user/user.mock.service';
 import { LoaderComponent } from './shared/components/loader/loader.component';
+import { ProfilDataService } from './shared/services/data/profil/profil.data.service';
+import { ProfilMockDataService } from './shared/services/data/profil/profil.mock.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -45,7 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    environment.mock ? { provide: UserDataService, useClass: UserMockDataService } : UserDataService
+    environment.mock ? { provide: UserDataService, useClass: UserMockDataService } : UserDataService,
+    environment.mock ? { provide: ProfilDataService, useClass: ProfilMockDataService } : ProfilDataService
   ],
   bootstrap: [AppComponent]
 })

@@ -5,4 +5,63 @@
   <h1>{{ "User.EditProfil" | translate }}</h1>
   <h2>{{profil?.name}}</h2>
 
+  <form [formGroup]="profilForm">
+    <ion-grid>
+
+      <ng-template #nameInput>
+        <ion-item>
+          <ion-label color="primary" position="floating">
+            {{"User.Name" | translate}}
+          </ion-label>
+          <ion-input clearInput type="text" formControlName="name"></ion-input>
+        </ion-item>
+      </ng-template>
+      <app-template-center-col [template]="nameInput"></app-template-center-col>
+
+      <ng-template #sexeRadio>
+        <ion-radio-group formControlName="sexe">
+          <ion-label color="primary" position="floating">
+            {{"User.Sexe" | translate}}
+          </ion-label>
+          <ion-item>
+            <ion-label>Male <ion-icon name="male"></ion-icon>
+            </ion-label>
+            <ion-radio slot="start" value="m"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Female <ion-icon name="female"></ion-icon>
+            </ion-label>
+            <ion-radio slot="start" value="f"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ng-template>
+      <app-template-center-col [template]="sexeRadio"></app-template-center-col>
+
+      <ng-template #personalitiesInput>
+        <ion-row>
+          <ion-col size-xs="12" size-xl="6" size-sm="6" size-lg="6">
+            <app-personalities-list-form [form]="hatedPersonalitiesForm"
+              [title]="'User.HatedPersonalities' | translate">
+            </app-personalities-list-form>
+          </ion-col>
+          <ion-col size-xs="12" size-xl="6" size-sm="6" size-lg="6">
+            <app-personalities-list-form [form]="lovedPersonalitiesForm"
+              [title]="'User.LovedPersonalities' | translate">
+            </app-personalities-list-form>
+          </ion-col>
+        </ion-row>
+      </ng-template>
+      <app-template-center-col [template]="personalitiesInput"></app-template-center-col>
+
+      <ng-template #editButton>
+        <ion-button class="padding-not-stick-edges" (click)="onEdit()" color="secondary" expand="block"
+          [disabled]="!profilForm.valid">
+          {{'General.Edit' | translate}}
+          <ion-icon slot="end" icon="pencil"></ion-icon>
+        </ion-button>
+      </ng-template>
+      <app-template-center-col [template]="editButton"></app-template-center-col>
+    </ion-grid>
+  </form>
+
 </ion-content>

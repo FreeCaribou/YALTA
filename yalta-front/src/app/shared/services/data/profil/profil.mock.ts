@@ -4,7 +4,16 @@ export const mock_one_profil = {
   age: 27,
   description: 'Vous avez déjà entendu parler de la redistribution des ressources?',
   imageSrc: 'https://pbs.twimg.com/profile_images/1082932621234094080/pU3bpobx_400x400.jpg',
-  sexe: 'm'
+  sexe: 'm',
+  hatedPersonalities: [
+    'Churchill',
+    'de Gaulle',
+    'Staline'
+  ],
+  lovedPersonalities: [
+    'Rosa Luxemburg',
+    'Louise Michel'
+  ]
 };
 
 export const mock_profils = [

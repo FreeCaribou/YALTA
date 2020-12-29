@@ -1,7 +1,8 @@
 {
   "General": {
     "HelloWorld": "Hello World",
-    "Submit": "Submit"
+    "Submit": "Submit",
+    "Edit": "Edit"
   },
   "Menu": {
     "Home": "Home",
@@ -22,7 +23,10 @@
     "NoAccountYet" : "Don't have an account yet",
     "SignUp": "Sign up",
     "Name": "Name",
-    "EditProfil": "You can edit your profil here"
+    "EditProfil": "You can edit your profil here",
+    "Sexe": "Sexe - Gender",
+    "HatedPersonalities": "Hated personalities",
+    "LovedPersonalities": "Loved personalities"
   },
   "Home": {
     "FindYourSoulMate": "Find your soul mate",

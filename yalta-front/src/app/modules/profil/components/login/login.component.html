@@ -21,18 +21,6 @@
     </ng-template>
     <app-template-center-col [template]="passwordInput"></app-template-center-col>
 
-    <div *ngIf="newAccount">
-      <ng-template #nameInput>
-        <ion-item>
-          <ion-label color="primary" position="floating">
-            {{"User.Name" | translate}}
-          </ion-label>
-          <ion-input clearInput type="text" formControlName="name"></ion-input>
-        </ion-item>
-      </ng-template>
-      <app-template-center-col [template]="nameInput"></app-template-center-col>
-    </div>
-
     <ng-template #loginButton>
       <ion-button class="padding-not-stick-edges" (click)="onLogin()" color="secondary" expand="block"
         [disabled]="!loginForm.valid">
@@ -53,6 +41,16 @@
     </div>
 
     <div *ngIf="newAccount">
+      <ng-template #nameInput>
+        <ion-item>
+          <ion-label color="primary" position="floating">
+            {{"User.Name" | translate}}
+          </ion-label>
+          <ion-input clearInput type="text" formControlName="name"></ion-input>
+        </ion-item>
+      </ng-template>
+      <app-template-center-col [template]="nameInput"></app-template-center-col>
+
       <ng-template #signUpButton>
         <ion-button class="padding-not-stick-edges" (click)="onSignUp()" color="secondary" expand="block"
           [disabled]="!loginForm.valid || loginForm.value.name ==''">

@@ -22,6 +22,7 @@
   </div>
 
   <div *ngIf="userCommunication.user">
+    <app-my-resume></app-my-resume>
     <ng-template #disconnect>
       <ion-grid>
         <ion-button color="danger" expand="block" (click)="userCommunication.user = null">

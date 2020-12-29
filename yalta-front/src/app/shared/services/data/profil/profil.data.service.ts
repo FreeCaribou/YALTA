@@ -16,4 +16,8 @@ export class ProfilDataService implements IProfilService {
     return this.basService.get(`${this.basService}`)
   }
 
+  getMyProfil(): Observable<any> {
+    return this.basService.get(`${this.basService}/myself`);
+  }
+
 }

@@ -1,4 +1,13 @@
-export const mock_profil = [
+export const mock_one_profil = {
+  id: 42,
+  name: 'Samy Gnu',
+  age: 27,
+  description: 'Vous avez déjà entendu parler de la redistribution des ressources?',
+  imageSrc: 'https://pbs.twimg.com/profile_images/1082932621234094080/pU3bpobx_400x400.jpg',
+  sexe: 'm'
+};
+
+export const mock_profils = [
   {
     id: 1,
     name: 'Rosa Luxemburg',
@@ -55,4 +64,4 @@ export const mock_profil = [
     imageSrc: 'https://www.thefamouspeople.com/profiles/images/louis-xvi-of-france-4.jpg',
     sexe: 'm'
   }
-]
+];

@@ -13,4 +13,8 @@ export class ProfilService implements IProfilService {
     return this.service.getSuggestedMatchProfil();
   }
 
+  getMyProfil(): Observable<any> {
+    return this.service.getMyProfil();
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ErrorCommunicationService } from 'src/app/shared/services/communication/error.communication.service';
 import { LoaderCommunicationService } from 'src/app/shared/services/communication/loader.communication.service';
 import { UserCommunicationService } from 'src/app/shared/services/communication/user.communication.service';
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
     private userService: UserService,
     private userCommunication: UserCommunicationService,
     private loaderCommunication: LoaderCommunicationService,
-    private errorCommunication: ErrorCommunicationService
+    private errorCommunication: ErrorCommunicationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -50,6 +52,7 @@ export class LoginComponent implements OnInit {
       console.log('the sign up data', data);
       this.userCommunication.user = data;
       // TODO describe better profil now?
+      this.router.navigate(['tabs/profil/my-profil']);
     }, error => {
       this.errorCommunication.throwError(error);
     }, () => {

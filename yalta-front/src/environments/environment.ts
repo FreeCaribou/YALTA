@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiMock: true,
   mock: true,
   apiUrl: 'www.url.com'
 };

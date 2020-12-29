@@ -10,9 +10,9 @@ import { UserCommunicationService } from '../services/communication/user.communi
 export class ProfilGuard implements CanActivate {
 
   constructor(
-    private userCommunication: UserCommunicationService,
-    private errorCommunication: ErrorCommunicationService,
-    private router: Router
+    public userCommunication: UserCommunicationService,
+    public errorCommunication: ErrorCommunicationService,
+    public router: Router
   ) { }
   canActivate(
     next: ActivatedRouteSnapshot,

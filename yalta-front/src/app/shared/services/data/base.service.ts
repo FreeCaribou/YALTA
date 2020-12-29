@@ -10,7 +10,7 @@ import { AlertController } from '@ionic/angular';
 export class BaseService {
   baseUrl: string = environment.apiUrl;
 
-  constructor(private httpClient: HttpClient, public alertController: AlertController) { }
+  constructor(public httpClient: HttpClient, public alertController: AlertController) { }
 
   getApiTokenHeader(): HttpHeaders {
     let headers = new HttpHeaders();

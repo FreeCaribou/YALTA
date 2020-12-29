@@ -14,7 +14,7 @@ export class HomePage {
   ];
   quote: string;
 
-  constructor(private userCommunication: UserCommunicationService) { }
+  constructor(public userCommunication: UserCommunicationService) { }
 
   ionViewWillEnter() {
     this.quote = this.getRandomQuote();

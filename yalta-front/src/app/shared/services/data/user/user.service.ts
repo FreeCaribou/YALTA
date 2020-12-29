@@ -7,7 +7,7 @@ import { IUserService } from './user.service.interface';
   providedIn: 'root'
 })
 export class UserService implements IUserService {
-  constructor(private service: UserDataService) { }
+  constructor(public service: UserDataService) { }
 
   login(user): Observable<any> {
     return this.service.login(user);

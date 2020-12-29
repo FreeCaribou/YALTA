@@ -14,13 +14,13 @@ import { ErrorCommunicationService } from './shared/services/communication/error
 })
 export class AppComponent {
   constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private languageCommunication: LanguageCommunicationService,
-    private loaderCommunication: LoaderCommunicationService,
-    private toastController: ToastController,
-    private errorCommunication: ErrorCommunicationService
+    public platform: Platform,
+    public splashScreen: SplashScreen,
+    public statusBar: StatusBar,
+    public languageCommunication: LanguageCommunicationService,
+    public loaderCommunication: LoaderCommunicationService,
+    public toastController: ToastController,
+    public errorCommunication: ErrorCommunicationService
   ) {
     this.initializeApp();
   }

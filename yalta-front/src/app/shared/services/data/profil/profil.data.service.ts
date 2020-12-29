@@ -10,7 +10,7 @@ import { IProfilService } from './profil.service.interface';
 export class ProfilDataService implements IProfilService {
   baseUrl = 'profil';
 
-  constructor(private basService: BaseService) { }
+  constructor(public basService: BaseService) { }
 
   getSuggestedMatchProfil(): Observable<any> {
     return this.basService.get(`${this.basService}`)

@@ -12,9 +12,9 @@ export class MyProfilPage {
   profil;
 
   constructor(
-    private profilService: ProfilService,
-    private loaderCommunication: LoaderCommunicationService,
-    private errorCommunication: ErrorCommunicationService
+    public profilService: ProfilService,
+    public loaderCommunication: LoaderCommunicationService,
+    public errorCommunication: ErrorCommunicationService
   ) { }
 
   ionViewWillEnter() {

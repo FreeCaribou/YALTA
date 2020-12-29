@@ -7,7 +7,7 @@ import { IProfilService } from './profil.service.interface';
   providedIn: 'root'
 })
 export class ProfilService implements IProfilService {
-  constructor(private service: ProfilDataService) { }
+  constructor(public service: ProfilDataService) { }
 
   getSuggestedMatchProfil(): Observable<any> {
     return this.service.getSuggestedMatchProfil();

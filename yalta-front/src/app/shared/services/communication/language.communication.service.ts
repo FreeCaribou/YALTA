@@ -9,7 +9,7 @@ export class LanguageCommunicationService {
   acceptedLanguages = ['en', 'fr', 'nl'];
   selectedLanguage: string;
 
-  constructor(private translate: TranslateService) { }
+  constructor(public translate: TranslateService) { }
 
   init() {
     this.translate.addLangs(this.acceptedLanguages);

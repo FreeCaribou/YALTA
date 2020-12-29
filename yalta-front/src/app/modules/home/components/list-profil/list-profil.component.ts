@@ -13,10 +13,10 @@ export class ListProfilComponent implements OnInit {
   profils: any[];
 
   constructor(
-    private loaderCommunication: LoaderCommunicationService,
-    private profilService: ProfilService,
-    private userCommunication: UserCommunicationService,
-    private errorCommunication: ErrorCommunicationService
+    public loaderCommunication: LoaderCommunicationService,
+    public profilService: ProfilService,
+    public userCommunication: UserCommunicationService,
+    public errorCommunication: ErrorCommunicationService
   ) { }
 
   ngOnInit() {

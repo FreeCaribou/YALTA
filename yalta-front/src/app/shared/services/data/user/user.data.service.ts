@@ -9,7 +9,7 @@ import { IUserService } from './user.service.interface';
 export class UserDataService implements IUserService {
   baseUrl = 'user';
 
-  constructor(private baseService: BaseService) { }
+  constructor(public baseService: BaseService) { }
 
   login(user): Observable<any> {
     return this.baseService.post(`${this.baseUrl}/login`, user)

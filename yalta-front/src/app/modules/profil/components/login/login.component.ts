@@ -5,6 +5,8 @@ import { ErrorCommunicationService } from 'src/app/shared/services/communication
 import { LoaderCommunicationService } from 'src/app/shared/services/communication/loader.communication.service';
 import { UserCommunicationService } from 'src/app/shared/services/communication/user.communication.service';
 import { UserService } from 'src/app/shared/services/data/user/user.service';
+import { emailValidPattern } from 'src/app/shared/utils';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -16,20 +18,20 @@ export class LoginComponent implements OnInit {
   newAccount = false;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private userService: UserService,
-    private userCommunication: UserCommunicationService,
-    private loaderCommunication: LoaderCommunicationService,
-    private errorCommunication: ErrorCommunicationService,
-    private router: Router
+    public formBuilder: FormBuilder,
+    public userService: UserService,
+    public userCommunication: UserCommunicationService,
+    public loaderCommunication: LoaderCommunicationService,
+    public errorCommunication: ErrorCommunicationService,
+    public router: Router
   ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       // TODO better email pattern
-      email: ['', [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
-      password: ['', Validators.required],
-      name: ['']
+      email: [environment.mock ? 'samy@yetanotherlovetreatyapp.com' : '', [Validators.required, Validators.pattern(emailValidPattern)]],
+      password: [environment.mock ? 'babyDontHurtMeNoMore' : '', Validators.required],
+      name: [environment.mock ? 'Samy Gnu' : '']
     })
   }
 

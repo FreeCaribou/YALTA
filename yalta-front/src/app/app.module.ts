@@ -47,8 +47,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    environment.mock ? { provide: UserDataService, useClass: UserMockDataService } : UserDataService,
-    environment.mock ? { provide: ProfilDataService, useClass: ProfilMockDataService } : ProfilDataService
+    environment.apiMock ? { provide: UserDataService, useClass: UserMockDataService } : UserDataService,
+    environment.apiMock ? { provide: ProfilDataService, useClass: ProfilMockDataService } : ProfilDataService
   ],
   bootstrap: [AppComponent]
 })

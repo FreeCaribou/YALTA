@@ -10,8 +10,8 @@ import { UserCommunicationService } from 'src/app/shared/services/communication/
 export class ProfilPage {
 
   constructor(
-    private languageCommunication: LanguageCommunicationService,
-    private userCommunication: UserCommunicationService
+    public languageCommunication: LanguageCommunicationService,
+    public userCommunication: UserCommunicationService
   ) { }
 
   disconnect() {

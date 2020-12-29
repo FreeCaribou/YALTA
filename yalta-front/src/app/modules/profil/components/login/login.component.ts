@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ErrorCommunicationService } from 'src/app/shared/services/communication/error.communication.service';
 import { LoaderCommunicationService } from 'src/app/shared/services/communication/loader.communication.service';
 import { UserCommunicationService } from 'src/app/shared/services/communication/user.communication.service';
 import { UserService } from 'src/app/shared/services/data/user/user.service';
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private userCommunication: UserCommunicationService,
-    private loaderCommunication: LoaderCommunicationService
+    private loaderCommunication: LoaderCommunicationService,
+    private errorCommunication: ErrorCommunicationService
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit {
       console.log('the login data', data);
       this.userCommunication.user = data;
     }, error => {
-
+      this.errorCommunication.throwError(error);
     }, () => {
       this.loaderCommunication.isLoading = false;
     })
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
       this.userCommunication.user = data;
       // TODO describe better profil now?
     }, error => {
-
+      this.errorCommunication.throwError(error);
     }, () => {
       this.loaderCommunication.isLoading = false;
     })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorCommunicationService } from 'src/app/shared/services/communication/error.communication.service';
 import { LoaderCommunicationService } from 'src/app/shared/services/communication/loader.communication.service';
 import { UserCommunicationService } from 'src/app/shared/services/communication/user.communication.service';
 import { ProfilService } from 'src/app/shared/services/data/profil/profil.service';
@@ -14,7 +15,8 @@ export class ListProfilComponent implements OnInit {
   constructor(
     private loaderCommunication: LoaderCommunicationService,
     private profilService: ProfilService,
-    private userCommunication: UserCommunicationService
+    private userCommunication: UserCommunicationService,
+    private errorCommunication: ErrorCommunicationService
   ) { }
 
   ngOnInit() {
@@ -23,7 +25,7 @@ export class ListProfilComponent implements OnInit {
       this.profilService.getSuggestedMatchProfil().subscribe(data => {
         this.profils = data;
       }, error => {
-
+        this.errorCommunication.throwError(error);
       }, () => {
         this.loaderCommunication.isLoading = false;
       })

@@ -91,3 +91,10 @@ ion-tab-button {
 .fake-select-mouse {
   cursor: pointer;
 }
+
+.year-range {
+  ion-input {
+    flex: none;
+    width: 50px;
+  }
+}

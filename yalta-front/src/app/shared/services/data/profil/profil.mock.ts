@@ -2,7 +2,7 @@ export const mock_one_profil = {
   id: 42,
   name: 'Samy Gnu',
   age: 27,
-  description: 'Vous avez déjà entendu parler de la redistribution des ressources?',
+  description: 'Vous avez déjà entendu parler de la redistribution des ressources?\n\nAime les balades en fôret\nEt la raclette',
   imageSrc: 'https://pbs.twimg.com/profile_images/1082932621234094080/pU3bpobx_400x400.jpg',
   sexe: 'm',
   hatedPersonalities: [

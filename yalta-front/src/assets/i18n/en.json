@@ -26,7 +26,10 @@
     "EditProfil": "You can edit your profil here",
     "Sexe": "Sexe - Gender",
     "HatedPersonalities": "Hated personalities",
-    "LovedPersonalities": "Loved personalities"
+    "LovedPersonalities": "Loved personalities",
+    "Description": "Description",
+    "FavouritePeriod": "Your favourite period in history",
+    "SelectRangeQuickly": "You can select a range of date faster here"
   },
   "Home": {
     "FindYourSoulMate": "Find your soul mate",

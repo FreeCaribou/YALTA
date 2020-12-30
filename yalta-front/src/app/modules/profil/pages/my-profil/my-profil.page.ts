@@ -14,6 +14,39 @@ export class MyProfilPage implements OnInit {
   profilForm: FormGroup;
   hatedPersonalitiesForm: FormGroup;
   lovedPersonalitiesForm: FormGroup;
+  year = new Date().getFullYear();
+
+  // TODO mock backend for this
+  historyRanges = [
+    {
+      label: "Antiquity",
+      range: {
+        lower: -50,
+        upper: 478
+      }
+    },
+    {
+      label: "\"Dark Age\"",
+      range: {
+        lower: 478,
+        upper: 1453
+      }
+    },
+    {
+      label: "Renaissance",
+      range: {
+        lower: 1453,
+        upper: 1789
+      }
+    },
+    {
+      label: "Revolution",
+      range: {
+        lower: 1789,
+        upper: 1914
+      }
+    },
+  ]
 
   constructor(
     public profilService: ProfilService,
@@ -38,7 +71,9 @@ export class MyProfilPage implements OnInit {
     this.profilForm = this.formBuilder.group({
       name: [this.profil.name, Validators.required],
       sexe: [this.profil.sexe, Validators.required],
-      lovedPersonalities: []
+      description: [this.profil.description],
+      // TODO better control for it
+      range: [{ lower: 478, upper: 1871 }]
     });
 
     this.hatedPersonalitiesForm = this.formBuilder.group({
@@ -61,6 +96,18 @@ export class MyProfilPage implements OnInit {
   onEdit() {
     // TODO
     console.log(this.profilForm, this.hatedPersonalitiesForm, this.lovedPersonalitiesForm);
+  }
+
+  onLowerRangeChange(event) {
+    this.profilForm.controls['range'].setValue({ lower: event.detail.value, upper: this.profilForm.value.range.upper });
+  }
+
+  onUpperRangeChange(event) {
+    this.profilForm.controls['range'].setValue({ lower: this.profilForm.value.range.lower, upper: event.detail.value });
+  }
+
+  onPreRangeSelect(event) {
+    this.profilForm.controls['range'].setValue(event.detail.value.range);
   }
 
 }

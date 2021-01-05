@@ -1,0 +1,38 @@
+<ng-template #favouritePeriodRange>
+  <form [formGroup]="form">
+    <ion-list-header>
+      <ion-label color="primary">
+        {{"User.FavouritePeriod" | translate}}
+      </ion-label>
+    </ion-list-header>
+
+    <ion-row>
+      <ion-col size-sm="12" size-md="6">
+        <ion-select [placeholder]="'User.SelectRangeQuickly' | translate" interface="popover"
+          (ionChange)="onPreRangeSelect($event)">
+          <ion-select-option *ngFor="let item of historyRanges" [value]="item">{{item.label}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col size-sm="12" size-md="6">
+        <ion-select [placeholder]="'User.SelectAreas' | translate" interface="popover" multiple="true"
+          (ionChange)="onAreaSelect($event)" formControlName="areas">
+          <ion-select-option *ngFor="let item of geographicalAreas" [value]="item">{{item.label}}
+          </ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>
+      <ion-range dual-knobs color="secondary" pin="true" min="-50" max="2020" formControlName="range"
+        class="year-range">
+        <ion-input slot="start" type="number" [value]="form.value.range.lower" min="-50" [max]="form.value.range.upper"
+          (ionChange)="onLowerRangeChange($event)">
+        </ion-input>
+        <ion-input slot="end" type="number" [value]="form.value.range.upper" [min]="form.value.range.lower" [max]="year"
+          (ionChange)="onUpperRangeChange($event)">
+        </ion-input>
+      </ion-range>
+    </ion-item>
+  </form>
+</ng-template>
+<app-template-center-col [template]="favouritePeriodRange"></app-template-center-col>

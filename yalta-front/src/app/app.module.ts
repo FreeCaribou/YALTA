@@ -21,6 +21,8 @@ import { UserMockDataService } from './shared/services/data/user/user.mock.servi
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { ProfilDataService } from './shared/services/data/profil/profil.data.service';
 import { ProfilMockDataService } from './shared/services/data/profil/profil.mock.service';
+import { ToolDataService } from './shared/services/data/tool/tool.data.service';
+import { ToolMockDataService } from './shared/services/data/tool/tool.mock.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -48,7 +50,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     environment.apiMock ? { provide: UserDataService, useClass: UserMockDataService } : UserDataService,
-    environment.apiMock ? { provide: ProfilDataService, useClass: ProfilMockDataService } : ProfilDataService
+    environment.apiMock ? { provide: ProfilDataService, useClass: ProfilMockDataService } : ProfilDataService,
+    environment.apiMock ? { provide: ToolDataService, useClass: ToolMockDataService } : ToolDataService,
   ],
   bootstrap: [AppComponent]
 })

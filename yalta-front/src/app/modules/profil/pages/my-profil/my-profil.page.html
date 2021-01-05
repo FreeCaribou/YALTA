@@ -46,31 +46,8 @@
       </ng-template>
       <app-template-center-col [template]="descriptionInput"></app-template-center-col>
 
-      <ng-template #favouritePeriodRange>
-        <ion-list-header>
-          <ion-label color="primary">
-            {{"User.FavouritePeriod" | translate}}
-          </ion-label>
-        </ion-list-header>
-
-        <ion-select [placeholder]="'User.SelectRangeQuickly' | translate" interface="popover"
-          (ionChange)="onPreRangeSelect($event)">
-          <ion-select-option *ngFor="let item of historyRanges" [value]="item">{{item.label}}</ion-select-option>
-        </ion-select>
-
-        <ion-item>
-          <ion-range dual-knobs color="secondary" pin="true" min="-50" max="2020" formControlName="range"
-            class="year-range">
-            <ion-input slot="start" type="number" [value]="profilForm.value.range.lower" min="-50"
-              [max]="profilForm.value.range.upper" (ionChange)="onLowerRangeChange($event)">
-            </ion-input>
-            <ion-input slot="end" type="number" [value]="profilForm.value.range.upper"
-              [min]="profilForm.value.range.lower" [max]="year" (ionChange)="onUpperRangeChange($event)">
-            </ion-input>
-          </ion-range>
-        </ion-item>
-      </ng-template>
-      <app-template-center-col [template]="favouritePeriodRange"></app-template-center-col>
+      <app-my-preferred-period [form]="preferredPeriodForm" [historyRanges]="historyRanges"
+        [geographicalAreas]="geographicalAreas"></app-my-preferred-period>
 
       <ng-template #personalitiesInput>
         <ion-row>

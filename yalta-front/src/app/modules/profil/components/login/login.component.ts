@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorCommunicationService } from 'src/app/shared/services/communication/error.communication.service';
+import { FormCommunicationService } from 'src/app/shared/services/communication/form.communication.service';
 import { LoaderCommunicationService } from 'src/app/shared/services/communication/loader.communication.service';
 import { UserCommunicationService } from 'src/app/shared/services/communication/user.communication.service';
 import { UserService } from 'src/app/shared/services/data/user/user.service';
-import { emailValidPattern } from 'src/app/shared/utils';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -18,21 +17,16 @@ export class LoginComponent implements OnInit {
   newAccount = false;
 
   constructor(
-    public formBuilder: FormBuilder,
     public userService: UserService,
     public userCommunication: UserCommunicationService,
     public loaderCommunication: LoaderCommunicationService,
     public errorCommunication: ErrorCommunicationService,
-    public router: Router
+    public router: Router,
+    public formCommunication: FormCommunicationService
   ) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      // TODO better email pattern
-      email: [environment.mock ? 'samy@yetanotherlovetreatyapp.com' : '', [Validators.required, Validators.pattern(emailValidPattern)]],
-      password: [environment.mock ? 'babyDontHurtMeNoMore' : '', Validators.required],
-      name: [environment.mock ? 'Samy Gnu' : '']
-    })
+    this.loginForm = this.formCommunication.buildLoginForm();
   }
 
   onLogin() {

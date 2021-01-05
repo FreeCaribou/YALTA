@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MyResumeComponent } from './components/my-resume/my-resume.component';
 import { MyProfilPage } from './pages/my-profil/my-profil.page';
 import { PersonalitiesListFormComponent } from './components/personalities-list-form/personalities-list-form.component';
+import { MyPreferredPeriodComponent } from './components/my-preferred-period/my-preferred-period.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,8 @@ import { PersonalitiesListFormComponent } from './components/personalities-list-
     MyProfilPage,
     LoginComponent,
     MyResumeComponent,
-    PersonalitiesListFormComponent]
+    PersonalitiesListFormComponent,
+    MyPreferredPeriodComponent
+  ]
 })
 export class ProfilPageModule { }

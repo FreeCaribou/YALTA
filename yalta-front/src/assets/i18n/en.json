@@ -29,7 +29,8 @@
     "LovedPersonalities": "Loved personalities",
     "Description": "Description",
     "FavouritePeriod": "Your favourite period in history",
-    "SelectRangeQuickly": "You can select a range of date faster here"
+    "SelectRangeQuickly": "You can select a range of date faster here",
+    "SelectAreas": "Select if you want one or more geographical areas"
   },
   "Home": {
     "FindYourSoulMate": "Find your soul mate",

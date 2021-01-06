@@ -16,12 +16,15 @@ export class MyProfilPage implements OnInit {
   profilForm: FormGroup;
   hatedPersonalitiesForm: FormGroup;
   lovedPersonalitiesForm: FormGroup;
-  preferredPeriodForm: FormGroup;
+  firstPreferredPeriodForm: FormGroup;
+  secondPreferredPeriodForm: FormGroup;
+  thirdPreferredPeriodForm: FormGroup;
 
   year = new Date().getFullYear();
   profil;
   historyRanges;
   geographicalAreas;
+  numberOfHistoryRange = 1;
 
   constructor(
     public profilService: ProfilService,
@@ -53,12 +56,59 @@ export class MyProfilPage implements OnInit {
     this.profilForm = this.formCommunication.buildProfilForm(this.profil);
     this.hatedPersonalitiesForm = this.formCommunication.buildPersonalitiesForm(this.profil.hatedPersonalities);
     this.lovedPersonalitiesForm = this.formCommunication.buildPersonalitiesForm(this.profil.lovedPersonalities);
-    this.preferredPeriodForm = this.formCommunication.buildPreferredPeriodForm(478, 1831, []);
+
+    // TODO see with the backend the already existing value
+    this.firstPreferredPeriodForm = this.formCommunication.buildPreferredPeriodForm(-1000, this.year, []);
+    this.secondPreferredPeriodForm = this.formCommunication.buildPreferredPeriodForm(-1000, this.year, []);
+    this.thirdPreferredPeriodForm = this.formCommunication.buildPreferredPeriodForm(-1000, this.year, []);
+  }
+
+  onAddPeriod(event) {
+    this.numberOfHistoryRange += 1;
+  }
+
+  onRemoveFirstPeriod(event) {
+    if (this.numberOfHistoryRange == 3) {
+      this.firstPreferredPeriodForm = this.secondPreferredPeriodForm;
+      this.secondPreferredPeriodForm = this.thirdPreferredPeriodForm;
+      this.thirdPreferredPeriodForm = this.formCommunication.buildPreferredPeriodForm(-1000, this.year, []);
+    }
+    else if (this.numberOfHistoryRange == 2) {
+      this.firstPreferredPeriodForm = this.secondPreferredPeriodForm;
+      this.secondPreferredPeriodForm = this.formCommunication.buildPreferredPeriodForm(-1000, this.year, []);
+    }
+    this.numberOfHistoryRange -= 1;
+  }
+
+  onRemoveSecondPeriod(event) {
+    if (this.numberOfHistoryRange == 3) {
+      this.secondPreferredPeriodForm = this.thirdPreferredPeriodForm;
+      this.thirdPreferredPeriodForm = this.formCommunication.buildPreferredPeriodForm(-1000, this.year, []);
+    }
+    this.numberOfHistoryRange -= 1;
+  }
+
+  onRemoveThirdPeriod(event) {
+    this.thirdPreferredPeriodForm = this.formCommunication.buildPreferredPeriodForm(-1000, this.year, []);
+    this.numberOfHistoryRange -= 1;
   }
 
   onEdit() {
     // TODO
-    console.log(this.profilForm, this.preferredPeriodForm, this.hatedPersonalitiesForm, this.lovedPersonalitiesForm);
+    let preferredPeriods = [this.firstPreferredPeriodForm.value];
+    if (this.numberOfHistoryRange >= 2) {
+      preferredPeriods.push(this.secondPreferredPeriodForm.value);
+    }
+    if (this.numberOfHistoryRange >= 3) {
+      preferredPeriods.push(this.thirdPreferredPeriodForm.value);
+    }
+
+    let profilToReturn = this.profilForm.value;
+    profilToReturn.hatedPersonalities = this.hatedPersonalitiesForm.value;
+    profilToReturn.lovedPersonalities = this.lovedPersonalitiesForm.value;
+    profilToReturn.preferredPeriods = preferredPeriods;
+
+    console.log('the profil', profilToReturn);
   }
 
 }

@@ -46,8 +46,28 @@
       </ng-template>
       <app-template-center-col [template]="descriptionInput"></app-template-center-col>
 
-      <app-my-preferred-period [form]="preferredPeriodForm" [historyRanges]="historyRanges"
-        [geographicalAreas]="geographicalAreas"></app-my-preferred-period>
+      <ng-template #preferedTitle>
+        <ion-list-header>
+          <ion-label color="primary">
+            {{"User.FavouritePeriod" | translate}}
+          </ion-label>
+        </ion-list-header>
+      </ng-template>
+      <app-template-center-col [template]="preferedTitle"></app-template-center-col>
+      <app-my-preferred-period [form]="firstPreferredPeriodForm" [historyRanges]="historyRanges"
+        [geographicalAreas]="geographicalAreas" (emitAddPeriod)="onAddPeriod($event)"
+        (emitRemovePeriod)="onRemoveFirstPeriod($event)" [showAddPeriod]="numberOfHistoryRange == 1"
+        [showRemovePeriod]="numberOfHistoryRange >= 2">
+      </app-my-preferred-period>
+      <app-my-preferred-period *ngIf="numberOfHistoryRange >= 2" [form]="secondPreferredPeriodForm"
+        [historyRanges]="historyRanges" [geographicalAreas]="geographicalAreas" (emitAddPeriod)="onAddPeriod($event)"
+        (emitRemovePeriod)="onRemoveSecondPeriod($event)" [showAddPeriod]="numberOfHistoryRange == 2"
+        [showRemovePeriod]="true">
+      </app-my-preferred-period>
+      <app-my-preferred-period *ngIf="numberOfHistoryRange >= 3" [form]="thirdPreferredPeriodForm"
+        [historyRanges]="historyRanges" [geographicalAreas]="geographicalAreas" (emitAddPeriod)="onAddPeriod($event)"
+        (emitRemovePeriod)="onRemoveThirdPeriod($event)" [showRemovePeriod]="true">
+      </app-my-preferred-period>
 
       <ng-template #personalitiesInput>
         <ion-row>

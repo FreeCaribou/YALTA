@@ -30,7 +30,9 @@
     "Description": "Description",
     "FavouritePeriod": "Your favourite period in history",
     "SelectRangeQuickly": "You can select a range of date faster here",
-    "SelectAreas": "Select if you want one or more geographical areas"
+    "SelectAreas": "Select if you want one or more geographical areas",
+    "AddPeriod": "Add a period",
+    "RemovePeriod": "Remove a period"
   },
   "Home": {
     "FindYourSoulMate": "Find your soul mate",

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -13,6 +13,17 @@ export class MyPreferredPeriodComponent implements OnInit {
   historyRanges;
   @Input()
   geographicalAreas;
+  @Input()
+  showAddPeriod = false;
+  @Input()
+  showRemovePeriod = false;
+
+  @Output()
+  emitAddPeriod = new EventEmitter<any>();
+  @Output()
+  emitRemovePeriod = new EventEmitter<any>();
+
+  year = new Date().getFullYear();
 
   constructor() { }
 
@@ -33,7 +44,16 @@ export class MyPreferredPeriodComponent implements OnInit {
   }
 
   onAreaSelect(event) {
+    // TODO see if the ask to write itself the areas
     console.log(event);
+  }
+
+  addPeriod() {
+    this.emitAddPeriod.emit();
+  }
+
+  removePeriod() {
+    this.emitRemovePeriod.emit();
   }
 
 }

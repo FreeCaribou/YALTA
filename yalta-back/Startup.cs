@@ -11,9 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Yalta.Models;
+using Microsoft.EntityFrameworkCore;
 
-
-namespace yalta_back
+namespace Yalta
 {
   public class Startup
   {
@@ -28,25 +29,42 @@ namespace yalta_back
     public void ConfigureServices(IServiceCollection services)
     {
 
+      string mySqlConnectionStr = "server=" + System.Environment.GetEnvironmentVariable("DB_Host")
+      + ";port=" + System.Environment.GetEnvironmentVariable("DB_Port")
+      + ";database=" + System.Environment.GetEnvironmentVariable("DB_Name")
+      + ";user=" + System.Environment.GetEnvironmentVariable("DB_User")
+      + ";password=" + System.Environment.GetEnvironmentVariable("DB_Password");
+      services.AddDbContext<YaltaContext>(options => options.UseMySql(mySqlConnectionStr));
+
+      // services.AddDbContext<YaltaContext>(opt => opt.UseInMemoryDatabase("YaltaDB"));
+
       services.AddControllers();
       services.AddSwaggerGen(c =>
       {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "yalta_back", Version = "v1" });
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Yalta", Version = "v1" });
       });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, YaltaContext context)
     {
-      Console.WriteLine(env.EnvironmentName);
       Console.WriteLine(System.Environment.GetEnvironmentVariable("Test"));
 
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
         app.UseSwagger();
-        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "yalta_back v1"));
+        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Yalta v1"));
       }
+
+      // TODO see condition for futur in prod
+      using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+      {
+        var contextTmp = serviceScope.ServiceProvider.GetRequiredService<YaltaContext>();
+        contextTmp.Database.EnsureCreated();
+      }
+
+      context.EnsureSeedDataForContext();
 
       app.UseHttpsRedirection();
 
@@ -58,9 +76,6 @@ namespace yalta_back
       {
         endpoints.MapControllers();
       });
-
-      app.UseDefaultFiles();
-      app.UseStaticFiles();
     }
   }
 }

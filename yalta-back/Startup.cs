@@ -13,6 +13,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Yalta.Models;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Yalta.Utils;
+using Yalta.Services;
 
 namespace Yalta
 {
@@ -35,14 +38,22 @@ namespace Yalta
       + ";user=" + System.Environment.GetEnvironmentVariable("DB_User")
       + ";password=" + System.Environment.GetEnvironmentVariable("DB_Password");
       services.AddDbContext<YaltaContext>(options => options.UseMySql(mySqlConnectionStr));
-
       // services.AddDbContext<YaltaContext>(opt => opt.UseInMemoryDatabase("YaltaDB"));
 
+      services.AddControllers().AddNewtonsoftJson(options =>
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+      );
+
+      services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
       services.AddControllers();
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "Yalta", Version = "v1" });
       });
+
+      // The service
+      services.AddScoped<IUserService, UserService>();
+      services.AddScoped<IProfilService, ProfilService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

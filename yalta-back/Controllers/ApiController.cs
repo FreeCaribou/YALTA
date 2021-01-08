@@ -10,13 +10,12 @@ namespace Yalta.Controllers
 {
   [ApiController]
   [Route("[controller]")]
-  public class WeatherForecastController : ControllerBase
+  public class ApiController : ControllerBase
   {
-    private readonly ILogger<WeatherForecastController> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public ApiController()
     {
-      _logger = logger;
+
     }
 
     [HttpGet]

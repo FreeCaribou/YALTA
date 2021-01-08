@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yalta.Models;
 
 namespace Yalta.Migrations
 {
     [DbContext(typeof(YaltaContext))]
-    partial class YaltaContextModelSnapshot : ModelSnapshot
+    [Migration("20210108125003_add-profil")]
+    partial class addprofil
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,6 +22,7 @@ namespace Yalta.Migrations
             modelBuilder.Entity("Yalta.Models.Profil", b =>
                 {
                     b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("BirthdayDate")
@@ -36,7 +39,6 @@ namespace Yalta.Migrations
             modelBuilder.Entity("Yalta.Models.User", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
                     b.Property<string>("Email")
@@ -53,11 +55,11 @@ namespace Yalta.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("Yalta.Models.Profil", b =>
+            modelBuilder.Entity("Yalta.Models.User", b =>
                 {
-                    b.HasOne("Yalta.Models.User", "User")
-                        .WithOne("Profil")
-                        .HasForeignKey("Yalta.Models.Profil", "Id")
+                    b.HasOne("Yalta.Models.Profil", "Profil")
+                        .WithOne("User")
+                        .HasForeignKey("Yalta.Models.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

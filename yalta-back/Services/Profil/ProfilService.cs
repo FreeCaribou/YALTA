@@ -24,7 +24,26 @@ namespace Yalta.Services
 
     public async Task<IEnumerable<ProfilDTO>> GetAll()
     {
-      return _mapper.Map<IEnumerable<ProfilDTO>>(await _context.Profil.Include(x => x.User).ToListAsync());
+      return _mapper.Map<IEnumerable<ProfilDTO>>(await _context.Profil.Include(x => x.User).Include(x => x.PreferredPeriods).ToListAsync());
+    }
+
+    public async Task<ProfilDTO> GetOne(long id)
+    {
+      return _mapper.Map<ProfilDTO>(await _context.Profil.Include(x => x.User).Include(x => x.PreferredPeriods).FirstOrDefaultAsync(x => x.Id == id));
+    }
+
+    public async Task Add(Profil Profil)
+    {
+      _context.Profil.Add(Profil);
+      await _context.SaveChangesAsync();
+    }
+
+    // TODO the verification of course
+    public async Task Update(ProfilUpdateDTO Profil)
+    {
+      Profil profilMapper = _mapper.Map<Profil>(Profil);
+      _context.Profil.Update(profilMapper);
+      await _context.SaveChangesAsync();
     }
 
   }

@@ -11,9 +11,14 @@ namespace Utils
     {
       CreateMap<User, UserSimpleDTO>();
       CreateMap<User, UserWithoutInfoDTO>();
+      CreateMap<UserSignUpDTO, User>();
+
       CreateMap<Profil, ProfilDTO>()
-      .ForMember(dest => dest.Age, opt => opt.MapFrom<BirthdayToAgeResolver>())
-      .ForMember(dest => dest.Name, opt => opt.MapFrom<UpUserNameResolver>());
+      .ForMember(dest => dest.Age, opt => opt.MapFrom<BirthdayToAgeResolver>());
+      CreateMap<ProfilSignUpForUserDTO, Profil>();
+      CreateMap<ProfilUpdateDTO, Profil>();
+
+      CreateMap<PreferredPeriod, PreferredPeriodDTO>();
     }
   }
 
@@ -30,11 +35,4 @@ namespace Utils
     }
   }
 
-  public class UpUserNameResolver : IValueResolver<Profil, ProfilDTO, string>
-  {
-    public string Resolve(Profil source, ProfilDTO destination, string member, ResolutionContext context)
-    {
-      return source.User.Name;
-    }
-  }
 }

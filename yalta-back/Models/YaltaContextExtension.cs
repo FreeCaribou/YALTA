@@ -15,14 +15,15 @@ namespace Yalta.Models
 
       // TODO see all with dev or prod deploiement
       context.User.RemoveRange(context.Set<User>());
+      context.PreferredPeriod.RemoveRange(context.Set<PreferredPeriod>());
       context.Profil.RemoveRange(context.Set<Profil>());
       context.SaveChanges();
 
       User samy = new User()
       {
-        Name = "Samy Gnu",
         Email = "samy@gnu.no",
-        Password = "c@rIBoU"
+        Password = "c@rIBoU",
+        CreatedAt = DateTime.Now
       };
 
       samy.Password = passwordHasher.Hash(samy.Password);
@@ -32,12 +33,21 @@ namespace Yalta.Models
 
       Profil samyProfil = new Profil()
       {
+        Name = "Samy Gnu",
         BirthdayDate = new DateTime(1993, 12, 24),
         Gender = "m",
-        User = samy
+        User = samy,
       };
-
       context.Profil.Add(samyProfil);
+      context.SaveChanges();
+
+      PreferredPeriod pf1 = new PreferredPeriod()
+      {
+        Lower = -50,
+        Upper = 1250,
+        Profil = samyProfil
+      };
+      context.PreferredPeriod.Add(pf1);
       context.SaveChanges();
 
       Console.WriteLine("DB init finish");

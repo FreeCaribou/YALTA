@@ -1,13 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Yalta.Services;
 using Yalta.Models;
 using Yalta.Models.DTO;
-
 
 namespace Yalta.Controllers
 {
@@ -17,6 +13,7 @@ namespace Yalta.Controllers
   {
     private readonly IUserService _user;
 
+    // TODO return a token
     public UserController(IUserService user)
     {
       _user = user;
@@ -29,11 +26,9 @@ namespace Yalta.Controllers
     }
 
     [HttpPost("signup")]
-    public async Task<ActionResult<UserSimpleDTO>> Registration(User user)
+    public async Task<ActionResult<UserSimpleDTO>> Registration(UserSignUpDTO user)
     {
       await _user.Registration(user);
-
-      // maybe rework the return for the password
       return CreatedAtAction(nameof(Login), user);
     }
   }

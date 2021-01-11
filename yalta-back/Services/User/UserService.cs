@@ -54,11 +54,14 @@ namespace Yalta.Services
       return result;
     }
 
-    public async Task Registration(User user)
+    public async Task Registration(UserSignUpDTO user)
     {
       // TODO verify doublon
-      user.Password = passwordHasher.Hash(user.Password);
-      _context.User.Add(user);
+      User userMapper = _mapper.Map<User>(user);
+      userMapper.CreatedAt = DateTime.Now;
+      userMapper.Profil.PreferredPeriods = new List<PreferredPeriod>() { new PreferredPeriod() { Lower = -50, Upper = DateTime.Now.Year } };
+      userMapper.Password = passwordHasher.Hash(userMapper.Password);
+      _context.User.Add(userMapper);
       await _context.SaveChangesAsync();
     }
   }

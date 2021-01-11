@@ -10,5 +10,7 @@ namespace Yalta.Models
 
     public DbSet<User> User { get; set; }
     public DbSet<Profil> Profil { get; set; }
+    public DbSet<PreferredPeriod> PreferredPeriod { get; set; }
+
   }
 }

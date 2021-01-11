@@ -2,42 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yalta.Models;
 
 namespace Yalta.Migrations
 {
     [DbContext(typeof(YaltaContext))]
-    partial class YaltaContextModelSnapshot : ModelSnapshot
+    [Migration("20210111072906_add-profil-3")]
+    partial class addprofil3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("Yalta.Models.PreferredPeriod", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Lower")
-                        .HasColumnType("int");
-
-                    b.Property<long?>("ProfilId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Upper")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProfilId");
-
-                    b.ToTable("PreferredPeriod");
-                });
 
             modelBuilder.Entity("Yalta.Models.Profil", b =>
                 {
@@ -64,9 +44,6 @@ namespace Yalta.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<string>("Email")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -76,13 +53,6 @@ namespace Yalta.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("Yalta.Models.PreferredPeriod", b =>
-                {
-                    b.HasOne("Yalta.Models.Profil", "Profil")
-                        .WithMany("PreferredPeriods")
-                        .HasForeignKey("ProfilId");
                 });
 
             modelBuilder.Entity("Yalta.Models.Profil", b =>

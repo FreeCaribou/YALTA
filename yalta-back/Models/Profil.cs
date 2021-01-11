@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace Yalta.Models
 {
@@ -7,9 +8,12 @@ namespace Yalta.Models
   {
     [ForeignKey("User")]
     public long Id { get; set; }
+    public string Name { get; set; }
     public DateTime BirthdayDate { get; set; }
     public string Gender { get; set; }
 
     public virtual User User { get; set; }
+
+    public List<PreferredPeriod> PreferredPeriods { get; set; }
   }
 }

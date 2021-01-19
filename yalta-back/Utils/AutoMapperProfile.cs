@@ -18,7 +18,17 @@ namespace Utils
       CreateMap<ProfilSignUpForUserDTO, Profil>();
       CreateMap<ProfilUpdateDTO, Profil>();
 
+      CreateMap<HatedPersonalities, PersonalitiesTopDTO>();
+      CreateMap<LovedPersonalities, PersonalitiesTopDTO>();
+      CreateMap<PersonalitiesTopPostDTO, HatedPersonalities>();
+      CreateMap<PersonalitiesTopPostDTO, LovedPersonalities>();
+
       CreateMap<PreferredPeriod, PreferredPeriodDTO>();
+      CreateMap<PreferredPeriodDTO, PreferredPeriod>();
+      CreateMap<PreferredPeriodPutDTO, PreferredPeriod>();
+
+      CreateMap<Area, AreaDTO>();
+      CreateMap<AreaPutDTO, Area>();
     }
   }
 

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yalta.Models;
 
 namespace Yalta.Migrations
 {
     [DbContext(typeof(YaltaContext))]
-    partial class YaltaContextModelSnapshot : ModelSnapshot
+    [Migration("20210119121523_init-lol")]
+    partial class initlol
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,8 +180,8 @@ namespace Yalta.Migrations
             modelBuilder.Entity("Yalta.Models.HatedPersonalities", b =>
                 {
                     b.HasOne("Yalta.Models.Profil", "Profil")
-                        .WithOne("HatedPersonalities")
-                        .HasForeignKey("Yalta.Models.HatedPersonalities", "Id")
+                        .WithMany()
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -189,8 +191,8 @@ namespace Yalta.Migrations
             modelBuilder.Entity("Yalta.Models.LovedPersonalities", b =>
                 {
                     b.HasOne("Yalta.Models.Profil", "Profil")
-                        .WithOne("LovedPersonalities")
-                        .HasForeignKey("Yalta.Models.LovedPersonalities", "Id")
+                        .WithMany()
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -221,10 +223,6 @@ namespace Yalta.Migrations
 
             modelBuilder.Entity("Yalta.Models.Profil", b =>
                 {
-                    b.Navigation("HatedPersonalities");
-
-                    b.Navigation("LovedPersonalities");
-
                     b.Navigation("PreferredPeriods");
                 });
 

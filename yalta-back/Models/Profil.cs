@@ -13,6 +13,8 @@ namespace Yalta.Models
     public string Gender { get; set; }
 
     public virtual User User { get; set; }
+    public virtual LovedPersonalities LovedPersonalities { get; set; }
+    public virtual HatedPersonalities HatedPersonalities { get; set; }
 
     public List<PreferredPeriod> PreferredPeriods { get; set; }
   }

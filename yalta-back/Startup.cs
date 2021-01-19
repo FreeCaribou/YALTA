@@ -36,7 +36,7 @@ namespace Yalta
       + ";database=" + System.Environment.GetEnvironmentVariable("DB_Name")
       + ";user=" + System.Environment.GetEnvironmentVariable("DB_User")
       + ";password=" + System.Environment.GetEnvironmentVariable("DB_Password");
-      services.AddDbContext<YaltaContext>(options => options.UseMySql(mySqlConnectionStr));
+      services.AddDbContextPool<YaltaContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
       // services.AddDbContext<YaltaContext>(opt => opt.UseInMemoryDatabase("YaltaDB"));
 
       services.AddControllers().AddNewtonsoftJson(options =>
@@ -53,6 +53,8 @@ namespace Yalta
       // The service
       services.AddScoped<IUserService, UserService>();
       services.AddScoped<IProfilService, ProfilService>();
+      services.AddScoped<IPreferredPeriodService, PreferredPeriodService>();
+      services.AddScoped<IAreaService, AreaService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

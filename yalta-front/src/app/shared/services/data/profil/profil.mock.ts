@@ -5,15 +5,15 @@ export const mock_one_profil = {
   description: 'Vous avez déjà entendu parler de la redistribution des ressources?\n\nAime les balades en fôret\nEt la raclette',
   imageSrc: 'https://pbs.twimg.com/profile_images/1082932621234094080/pU3bpobx_400x400.jpg',
   sexe: 'm',
-  hatedPersonalities: [
-    'Churchill',
-    'de Gaulle',
-    'Staline'
-  ],
-  lovedPersonalities: [
-    'Rosa Luxemburg',
-    'Louise Michel'
-  ]
+  hatedPersonalities: {
+    first: 'Churchill',
+    second: 'de Gaulle',
+    third: 'Staline'
+  },
+  lovedPersonalities: {
+    first: 'Rosa Luxemburg',
+    second: 'Louise Michel'
+  }
 };
 
 export const mock_profils = [

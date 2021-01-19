@@ -30,13 +30,13 @@ export class FormCommunicationService {
     });
   }
 
-  buildPersonalitiesForm(personalities: any[]) {
+  buildPersonalitiesForm(personalities: any) {
     return this.formBuilder.group({
-      one: [personalities[0] || ''],
-      two: [personalities[1] || ''],
-      three: [personalities[2] || ''],
-      four: [personalities[3] || ''],
-      five: [personalities[4] || '']
+      first: [personalities.first || ''],
+      second: [personalities.second || ''],
+      third: [personalities.third || ''],
+      fourth: [personalities.fourth || ''],
+      fifth: [personalities.fifth || '']
     });
   }
 

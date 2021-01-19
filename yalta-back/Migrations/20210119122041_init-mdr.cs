@@ -2,7 +2,7 @@
 
 namespace Yalta.Migrations
 {
-    public partial class inittest2 : Migration
+    public partial class initmdr : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

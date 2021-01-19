@@ -7,8 +7,16 @@ namespace Yalta.Models.DTO
 {
   public class PreferredPeriodDTO
   {
-    public long Id { get; set; }
     public int Lower { get; set; }
     public int Upper { get; set; }
+    public List<AreaDTO> Areas { get; set; }
   }
+
+  public class PreferredPeriodPutDTO
+  {
+    public int Lower { get; set; }
+    public int Upper { get; set; }
+    public List<AreaPutDTO> Areas { get; set; }
+  }
+
 }

@@ -10,7 +10,9 @@ namespace Yalta.Models
 
     public DbSet<User> User { get; set; }
     public DbSet<Profil> Profil { get; set; }
+    public DbSet<LovedPersonalities> LovedPersonalities { get; set; }
+    public DbSet<HatedPersonalities> HatedPersonalities { get; set; }
     public DbSet<PreferredPeriod> PreferredPeriod { get; set; }
-
+    public DbSet<Area> Area { get; set; }
   }
 }

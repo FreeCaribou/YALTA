@@ -11,6 +11,8 @@ namespace Yalta.Models.DTO
     public DateTime BirthdayDate { get; set; }
     public string Gender { get; set; }
 
+    public PersonalitiesTopDTO HatedPersonalities { get; set; }
+    public PersonalitiesTopDTO LovedPersonalities { get; set; }
     public List<PreferredPeriodDTO> PreferredPeriods { get; set; }
 
     public UserWithoutInfoDTO User { get; set; }
@@ -34,5 +36,13 @@ namespace Yalta.Models.DTO
 
     [Required]
     public long Id { get; set; }
+
+    [Required]
+    [ProfilValidationPreferredPeriodMinOneMaxThree(ErrorMessage ="You must have minimum one preferred period and maximum three")]
+    public List<PreferredPeriodPutDTO> PreferredPeriods { get; set; }
+    [Required(ErrorMessage = "You must love some personalities")]
+    public PersonalitiesTopPostDTO LovedPersonalities { get; set; }
+    [Required(ErrorMessage = "You must hate some personalities")]
+    public PersonalitiesTopPostDTO HatedPersonalities { get; set; }
   }
 }

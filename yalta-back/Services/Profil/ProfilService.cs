@@ -26,12 +26,26 @@ namespace Yalta.Services
 
     public async Task<IEnumerable<ProfilDTO>> GetAll()
     {
-      return _mapper.Map<IEnumerable<ProfilDTO>>(await _context.Profil.Include(x => x.User).Include(x => x.LovedPersonalities).Include(x => x.HatedPersonalities).Include(x => x.PreferredPeriods).ThenInclude(x => x.Areas).ToListAsync());
+      return _mapper.Map<IEnumerable<ProfilDTO>>(
+        await _context.Profil
+        .Include(x => x.User)
+        .Include(x => x.LovedPersonalities)
+        .Include(x => x.HatedPersonalities)
+        .Include(x => x.PreferredPeriods).ThenInclude(x => x.Areas)
+        .ToListAsync()
+        );
     }
 
     public async Task<ProfilDTO> GetOne(long id)
     {
-      return _mapper.Map<ProfilDTO>(await _context.Profil.Include(x => x.User).Include(x => x.PreferredPeriods).ThenInclude(x => x.Areas).FirstOrDefaultAsync(x => x.Id == id));
+      return _mapper.Map<ProfilDTO>(
+        await _context.Profil
+        .Include(x => x.User)
+        .Include(x => x.LovedPersonalities)
+        .Include(x => x.HatedPersonalities)
+        .Include(x => x.PreferredPeriods).ThenInclude(x => x.Areas)
+        .FirstOrDefaultAsync(x => x.Id == id)
+        );
     }
 
     public async Task Add(Profil Profil)

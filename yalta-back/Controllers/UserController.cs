@@ -19,7 +19,7 @@ namespace Yalta.Controllers
       _user = user;
     }
 
-    [HttpGet("login")]
+    [HttpPost("login")]
      public async Task<ActionResult<IEnumerable<UserSimpleDTO>>> Login(User user)
     {
       return Ok(await _user.Login(user));

@@ -14,7 +14,8 @@ export class ProfilPage {
     public userCommunication: UserCommunicationService
   ) { }
 
-  disconnect() {
+  onDisconnect() {
     this.userCommunication.user = null;
+    localStorage.removeItem('user');
   }
 }

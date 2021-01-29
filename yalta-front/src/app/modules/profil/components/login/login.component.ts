@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.loginForm.value).subscribe((data: any) => {
       // TODO better form the data
       console.log('the login data', data);
-      this.userCommunication.user = data;
+      this.connect(data);
     }, error => {
       this.errorCommunication.throwError(error);
     }, () => {
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.userService.signUp(this.loginForm.value).subscribe((data: any) => {
       // TODO better form the data
       console.log('the sign up data', data);
-      this.userCommunication.user = data;
+      this.connect(data);
       // TODO describe better profil now?
       this.router.navigate(['tabs/profil/my-profil']);
     }, error => {
@@ -54,6 +54,11 @@ export class LoginComponent implements OnInit {
     }, () => {
       this.loaderCommunication.isLoading = false;
     })
+  }
+
+  connect(data) {
+    this.userCommunication.user = data;
+    localStorage.setItem('user', data.token);
   }
 
 }

@@ -6,7 +6,7 @@ namespace Yalta.Services
 {
   public interface IUserService
   {
-    Task<UserSimpleDTO> Login(User user);
+    Task<TokenDTO> Login(User user);
     Task Registration(UserSignUpDTO user);
   }
 }

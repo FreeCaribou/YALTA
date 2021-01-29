@@ -8,6 +8,10 @@ using System;
 using System.Net.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Newtonsoft.Json;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Yalta.Services
 {
@@ -24,7 +28,7 @@ namespace Yalta.Services
       passwordHasher = new PasswordHasher();
     }
 
-    public async Task<UserSimpleDTO> Login(User user)
+    public async Task<TokenDTO> Login(User user)
     {
       User userLogged;
       try
@@ -33,25 +37,50 @@ namespace Yalta.Services
       }
       catch (Exception e)
       {
-        throw new ArgumentException("You dont exist");
+        throw new HttpResponseException(400, "You don't exist");
       }
 
       if (!passwordHasher.Check(userLogged.Password, user.Password).Verified)
       {
-        Console.WriteLine("bad password");
-        // TODO see how manage bad password
-        // return NotFound();
-
-        throw new ArgumentException("Bad password");
-        // throw new HttpResponseException()
-        // {
-        //   Status = 404,
-        //   Value = "Bad password"
-        // };
+        throw new HttpResponseException(400, "Bad Password");
       }
 
-      var result = _mapper.Map<UserSimpleDTO>(userLogged);
-      return result;
+      //string key = Environment.GetEnvironmentVariable("JWT_Token");
+      string key = Environment.GetEnvironmentVariable("JWT_Token");
+      var securityKey = new Microsoft
+               .IdentityModel.Tokens.SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+      var credentials = new Microsoft.IdentityModel.Tokens.SigningCredentials
+                           (securityKey, SecurityAlgorithms.HmacSha256Signature);
+      var header = new JwtHeader(credentials);
+      var payload = new JwtPayload
+           {
+               { "id", userLogged.Id },
+               { "date", DateTime.Now },
+           };
+      var secToken = new JwtSecurityToken(header, payload);
+      var handler = new JwtSecurityTokenHandler();
+      var token = handler.WriteToken(secToken);
+
+      // TODO it's just a test here, move later
+      try
+      {
+        SecurityToken validatedToken;
+        var securityKeyW = new Microsoft
+                .IdentityModel.Tokens.SymmetricSecurityKey(Encoding.UTF8.GetBytes(key + "e"));
+        var tokenValidationParameters = new TokenValidationParameters()
+        {
+          IssuerSigningKey = securityKey,
+          RequireExpirationTime = false,
+          ValidateAudience = false,
+          ValidateIssuer = false,
+        };
+        var tokenRead = handler.ValidateToken(token, tokenValidationParameters, out validatedToken);
+      } catch(Exception e)
+      {
+        throw new HttpResponseException(403, "Invalid sign token");
+      }
+
+      return new TokenDTO() { Token = token };
     }
 
     public async Task Registration(UserSignUpDTO user)

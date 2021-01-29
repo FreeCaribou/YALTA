@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LanguageCommunicationService } from './shared/services/communication/language.communication.service';
 import { LoaderCommunicationService } from './shared/services/communication/loader.communication.service';
 import { ErrorCommunicationService } from './shared/services/communication/error.communication.service';
+import { UserCommunicationService } from './shared/services/communication/user.communication.service';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +21,21 @@ export class AppComponent {
     public languageCommunication: LanguageCommunicationService,
     public loaderCommunication: LoaderCommunicationService,
     public toastController: ToastController,
-    public errorCommunication: ErrorCommunicationService
+    public errorCommunication: ErrorCommunicationService,
+    public userCommunication: UserCommunicationService
   ) {
     this.initializeApp();
   }
 
-  initializeApp() {
+  async initializeApp() {
     console.log('the user platform', this.platform.platforms());
+
+    // TODO better with the token, here it's just to test
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.userCommunication.user = user;
+    }
+
     this.languageCommunication.init();
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

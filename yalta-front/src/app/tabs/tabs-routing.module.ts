@@ -30,6 +30,12 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/home',
     pathMatch: 'full'
+  },
+  {
+    // TODO? an better redirect? with message?
+    path: '**',
+    redirectTo: '/tabs/home',
+    pathMatch: 'full'
   }
 ];
 

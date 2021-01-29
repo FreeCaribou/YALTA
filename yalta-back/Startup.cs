@@ -16,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Yalta.Utils;
 using Yalta.Services;
+using Yalta.Middleware;
 
 namespace Yalta
 {
@@ -44,11 +45,14 @@ namespace Yalta
       );
 
       services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-      services.AddControllers();
+    
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "Yalta", Version = "v1" });
       });
+
+      services.AddControllers(options =>
+        options.Filters.Add(new HttpResponseExceptionFilter()));
 
       // The service
       services.AddScoped<IUserService, UserService>();
@@ -76,6 +80,12 @@ namespace Yalta
         contextTmp.Database.EnsureCreated();
       }
 
+      app.UseMiddleware<ErrorMiddleware>();
+
+      app.UseStatusCodePages();
+
+      app.UseExceptionHandler("/error");
+
       context.EnsureSeedDataForContext();
 
       app.UseHttpsRedirection();
@@ -83,6 +93,21 @@ namespace Yalta
       app.UseRouting();
 
       app.UseAuthorization();
+
+      // app.UseExceptionHandler("/error");
+
+      //app.Use(async (context, next) =>
+      //{
+      //  Console.WriteLine("haha");
+      //  await next();
+      //  if (context.Response.StatusCode == 404 || context.Response.StatusCode == 405)
+      //  {
+      //    Console.WriteLine("haha if");
+      //    throw new HttpResponseException();
+      //    context.Request.Path = "/error/route";
+      //    await next();
+      //  }
+      //});
 
       app.UseEndpoints(endpoints =>
       {

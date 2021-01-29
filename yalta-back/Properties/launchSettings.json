@@ -30,7 +30,8 @@
         "DB_User": "root",
         "DB_Password": "",
         "DB_Name": "yalta",
-        "DB_Host": "localhost"
+        "DB_Host": "localhost",
+        "JWT_Token": "Wz58å654&6djHkæS!MbhøjAzk71ha"
       }
     }
   }

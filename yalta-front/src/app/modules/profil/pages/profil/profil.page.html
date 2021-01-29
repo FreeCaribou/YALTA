@@ -25,7 +25,7 @@
     <app-my-resume></app-my-resume>
     <ng-template #disconnect>
       <ion-grid>
-        <ion-button color="danger" expand="block" (click)="userCommunication.user = null">
+        <ion-button color="danger" expand="block" (click)="onDisconnect()">
           {{'User.Disconnect' | translate}}
         </ion-button>
       </ion-grid>
